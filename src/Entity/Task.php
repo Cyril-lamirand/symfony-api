@@ -32,6 +32,11 @@ class Task
      */
     private $done = 0;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="tasks")
+     */
+    private $user;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -69,6 +74,18 @@ class Task
     public function setDone(bool $done): self
     {
         $this->done = $done;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }
